@@ -28,8 +28,14 @@ exports.listBlog = async (req, res) => {
 exports.removeBlog = async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(id)
     const blog = await Blog.findOneAndDelete({ _id: id });
+    await fs.unlink(`./public/uploads/${blog.image}`, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Remove Image(Server) Success!");
+      }
+    });
     res.send(blog);
   } catch (err) {
     res.status(500).send("Delete blog error!!");
