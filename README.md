@@ -18,6 +18,7 @@
 * body-parser
 * cors
 * jsonwebtoken
+* mongoDB
 * mongoose
 * morgan
 * multer
